@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Astro Arun Pandit — Vedic Astrology & Spiritual Guidance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
+<style>
+  :root{
+    --bg-0:#0A0A1C;
+    --bg-1:#160F2E;
+    --bg-2:#241A45;
+    --gold:#E8C77A;
+    --gold-2:#F5DDA0;
+    --violet:#8B7CF6;
+    --indigo:#5B5FEF;
+    --text-hi:#F3F1FA;
+    --text-lo:#A79FC7;
+    --glass:rgba(255,255,255,0.055);
+    --glass-brd:rgba(255,255,255,0.12);
+    --glass-hi:rgba(255,255,255,0.14);
+    --radius:20px;
+    --saffron:#FF9843;
+    --vermillion:#E85D3D;
+    --diya-flame:#FFD37A;
+    --rose:#D94F6B;
+    --maroon:#7A1F2B;
+    --kumkum:#C1272D;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Plus Jakarta Sans',sans-serif;
+    background:var(--bg-0);
+    color:var(--text-hi);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.font-display{font-family:'Cormorant Garamond',serif;}
+  a{text-decoration:none;color:inherit;}
+  button{font-family:inherit;cursor:pointer;}
+  ::selection{background:var(--gold);color:#1a1030;}
+
+  /* ---- ambient background ---- */
+  .bg-fixed{
+    position:fixed; inset:0; z-index:-2;
+    background:
+      radial-gradient(1200px 700px at 12% -10%, rgba(139,124,246,0.35), transparent 60%),
+      radial-gradient(1000px 800px at 90% 10%, rgba(232,199,122,0.16), transparent 55%),
+      radial-gradient(900px 700px at 50% 100%, rgba(91,95,239,0.28), transparent 60%),
+      linear-gradient(180deg,var(--bg-0) 0%, var(--bg-1) 45%, var(--bg-2) 100%);
+  }
+  .stars{position:fixed; inset:0; z-index:-1; opacity:.5;
+    background-image:
+      radial-gradient(1.5px 1.5px at 20px 30px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 130px 80px, #fff, transparent),
+      radial-gradient(1px 1px at 210px 140px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 60px 190px, #fff, transparent),
+      radial-gradient(1px 1px at 300px 40px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 350px 220px, #fff, transparent);
+    background-repeat:repeat; background-size:400px 260px;
+    animation:drift 90s linear infinite;
+  }
+  @keyframes drift{ from{background-position:0 0;} to{background-position:-800px 520px;} }
+
+  .glow{position:fixed; border-radius:50%; filter:blur(90px); z-index:-1; opacity:.55; pointer-events:none;}
+  .glow.a{width:420px;height:420px; background:var(--violet); top:-120px; left:-100px;}
+  .glow.b{width:380px;height:380px; background:var(--gold); bottom:-140px; right:-80px; opacity:.25;}
+  .glow.c{width:520px;height:520px; background:var(--vermillion); top:35%; left:50%; transform:translate(-50%,-50%); opacity:.14;}
+
+  /* ---- mandir / pooja motifs ---- */
+  .om-mark{
+    position:fixed; top:50%; left:50%; transform:translate(-50%,-50%);
+    font-size:min(70vw,900px); font-family:'Cormorant Garamond',serif; font-weight:700;
+    color:transparent; -webkit-text-stroke:1px rgba(255,152,67,0.10);
+    z-index:-1; user-select:none; pointer-events:none; line-height:1;
+    animation:om-breathe 14s ease-in-out infinite;
+  }
+  @keyframes om-breathe{0%,100%{opacity:.5; transform:translate(-50%,-50%) scale(1);} 50%{opacity:.9; transform:translate(-50%,-50%) scale(1.03);}}
+
+  .garland{
+    height:10px; width:100%; margin-bottom:0;
+    background-image: radial-gradient(circle, var(--saffron) 45%, transparent 48%),
+                       radial-gradient(circle, var(--gold-2) 45%, transparent 48%);
+    background-size:22px 22px, 22px 22px;
+    background-position:0 0, 11px 0;
+    opacity:.85;
+  }
+
+  .diya{position:relative; width:26px; height:22px; display:inline-block; vertical-align:middle;}
+  .diya .flame{
+    position:absolute; top:-13px; left:50%; transform:translateX(-50%);
+    width:9px; height:15px; border-radius:50% 50% 50% 50% / 65% 65% 35% 35%;
+    background:radial-gradient(circle at 50% 30%, #fff, var(--diya-flame) 45%, var(--vermillion) 100%);
+    box-shadow:0 0 10px var(--diya-flame), 0 0 20px rgba(255,152,67,.6);
+    animation:flicker 2.4s ease-in-out infinite;
+    transform-origin:bottom center;
+  }
+  .diya .bowl{
+    position:absolute; bottom:0; left:0; width:26px; height:12px;
+    background:linear-gradient(180deg,var(--gold-2),var(--gold) 60%,#8a6420);
+    border-radius:0 0 13px 13px / 0 0 13px 13px;
+    clip-path:ellipse(50% 100% at 50% 0%);
+  }
+  @keyframes flicker{
+    0%,100%{transform:translateX(-50%) rotate(-2deg) scaleY(1);}
+    25%{transform:translateX(-50%) rotate(2deg) scaleY(1.05);}
+    50%{transform:translateX(-50%) rotate(-1deg) scaleY(.95);}
+    75%{transform:translateX(-50%) rotate(3deg) scaleY(1.02);}
+  }
+
+  .guru-frame{
+    position:relative; width:150px; height:150px; margin:0 auto 22px;
+    border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #4a3572, #201338 70%);
+    display:flex; align-items:center; justify-content:center;
+    border:2px solid var(--gold);
+    box-shadow:0 0 0 6px rgba(255,152,67,0.12), 0 0 45px rgba(255,152,67,0.35);
+  }
+  .guru-frame::before{
+    content:''; position:absolute; inset:-14px; border-radius:50%;
+    border:1px dashed rgba(232,199,122,0.4);
+    animation:spin 40s linear infinite;
+  }
+  .guru-frame .tilak{
+    font-family:'Cormorant Garamond',serif; font-size:52px; color:var(--gold-2);
+    text-shadow:0 0 18px rgba(232,199,122,.6);
+  }
+  .diya-row{display:flex; justify-content:center; gap:22px; margin:6px 0 26px;}
+
+  .petal-row{font-size:19px; letter-spacing:10px; margin-bottom:14px; opacity:.9;}
+  .card-pooja{position:relative; border-color:rgba(217,79,107,0.25);}
+  .card-pooja::after{
+    content:''; position:absolute; top:18px; right:20px; width:14px; height:14px; border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #ff8a94, var(--kumkum) 70%);
+    box-shadow:0 0 10px rgba(193,39,45,.6);
+  }
+  .tag-rose{background:linear-gradient(135deg,#F0A0B4,var(--rose) 60%); color:#3a0a14;}
+
+  /* ---- glass utility ---- */
+  .glass{
+    background:var(--glass);
+    backdrop-filter:blur(24px) saturate(140%);
+    -webkit-backdrop-filter:blur(24px) saturate(140%);
+    border:1px solid var(--glass-brd);
+    box-shadow:0 8px 32px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.06);
+    border-radius:var(--radius);
+  }
+
+  /* ---- layout ---- */
+  .wrap{max-width:1240px; margin:0 auto; padding:0 28px;}
+  section{position:relative; padding:100px 0;}
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:13px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--gold-2); font-weight:600; margin-bottom:18px;
+  }
+  .eyebrow::before{content:'✦';}
+  h2.section-title{font-size:42px; font-weight:600; margin:0 0 12px; letter-spacing:.01em;}
+  .section-sub{color:var(--text-lo); font-size:16px; max-width:560px; margin:0 0 48px; line-height:1.6;}
+  .section-head{display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:20px;}
+
+  /* ---- navbar ---- */
+  nav{
+    position:sticky; top:16px; z-index:50; margin:0 auto; max-width:1240px;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 26px; margin-top:16px;
+  }
+  .nav-logo{font-family:'Cormorant Garamond',serif; font-size:23px; font-weight:700; letter-spacing:.02em;
+    display:flex; align-items:center; gap:8px;}
+  .nav-logo .dot{color:var(--gold);}
+  .nav-links{display:flex; gap:30px; font-size:14.5px; font-weight:500; color:var(--text-lo);}
+  .nav-links a{transition:color .2s;}
+  .nav-links a:hover{color:var(--gold-2);}
+  .nav-cta{display:flex; gap:12px; align-items:center;}
+  @media (max-width:920px){.nav-links{display:none;}}
+
+  /* ---- buttons ---- */
+  .btn{
+    padding:13px 26px; border-radius:14px; font-weight:600; font-size:14.5px;
+    display:inline-flex; align-items:center; gap:8px; border:1px solid transparent;
+    transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+  }
+  .btn:active{transform:scale(.97);}
+  .btn-primary{
+    background:linear-gradient(135deg,var(--gold-2),var(--gold) 60%, #C9A253);
+    color:#241505; box-shadow:0 6px 24px rgba(232,199,122,0.35);
+  }
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 10px 30px rgba(232,199,122,0.5);}
+  .btn-ghost{
+    background:var(--glass); border:1px solid var(--glass-brd); color:var(--text-hi);
+    backdrop-filter:blur(14px);
+  }
+  .btn-ghost:hover{background:var(--glass-hi); transform:translateY(-2px);}
+  .btn-sm{padding:10px 18px; font-size:13.5px; border-radius:11px;}
+
+  /* ---- hero ---- */
+  .hero{padding:80px 0 60px; text-align:center;}
+  .hero h1{font-size:clamp(38px,6vw,68px); line-height:1.08; font-weight:600; margin:0 auto 22px; max-width:820px;}
+  .hero h1 em{font-style:normal; color:var(--gold-2); background:linear-gradient(120deg,var(--gold-2),var(--violet)); -webkit-background-clip:text; background-clip:text; color:transparent;}
+  .hero p{color:var(--text-lo); font-size:18px; max-width:560px; margin:0 auto 34px; line-height:1.7;}
+  .hero-cta{display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-bottom:64px;}
+  .hero-stats{display:flex; justify-content:center; gap:16px; flex-wrap:wrap;}
+  .stat-card{padding:18px 26px; text-align:left; min-width:170px;}
+  .stat-card .num{font-family:'Cormorant Garamond',serif; font-size:30px; font-weight:700; color:var(--gold-2);}
+  .stat-card .lbl{font-size:12.5px; color:var(--text-lo); margin-top:2px;}
+
+  /* orbit signature */
+  .orbit-wrap{position:relative; width:100%; max-width:560px; height:300px; margin:20px auto 10px; opacity:.9;}
+  .orbit{position:absolute; border:1px solid rgba(232,199,122,0.25); border-radius:50%; top:50%; left:50%;
+    transform:translate(-50%,-50%); animation:spin linear infinite;}
+  .orbit.o1{width:180px;height:180px; animation-duration:18s;}
+  .orbit.o2{width:300px;height:300px; animation-duration:32s; border-color:rgba(139,124,246,.25);}
+  .orbit.o3{width:440px;height:170px; animation-duration:46s; border-color:rgba(255,255,255,.08);}
+  .orbit .p{position:absolute; width:9px; height:9px; border-radius:50%; background:var(--gold-2); box-shadow:0 0 12px var(--gold-2); top:-4.5px; left:calc(50% - 4.5px);}
+  .orbit.o2 .p{background:var(--violet); box-shadow:0 0 12px var(--violet);}
+  .orbit-core{position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:70px; height:70px; border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, var(--gold-2), var(--gold) 55%, #7a5a1c 100%); box-shadow:0 0 50px rgba(232,199,122,0.55);}
+  @keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg);}}
+
+  /* ---- cards grid ---- */
+  .grid{display:grid; gap:22px;}
+  .grid-3{grid-template-columns:repeat(3,1fr);}
+  .grid-4{grid-template-columns:repeat(4,1fr);}
+  .grid-2{grid-template-columns:repeat(2,1fr);}
+  @media (max-width:980px){.grid-3,.grid-4{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:640px){.grid-3,.grid-4,.grid-2{grid-template-columns:1fr;}}
+
+  .card{
+    padding:28px; transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    position:relative; overflow:hidden;
+  }
+  .card::before{content:''; position:absolute; inset:0; background:linear-gradient(160deg,rgba(255,255,255,.08),transparent 40%); opacity:0; transition:opacity .3s;}
+  .card:hover{transform:translateY(-6px); border-color:rgba(232,199,122,0.35); box-shadow:0 16px 40px rgba(0,0,0,.45);}
+  .card:hover::before{opacity:1;}
+  .tag{display:inline-block; font-size:11.5px; font-weight:700; letter-spacing:.04em; color:#241505;
+    background:linear-gradient(135deg,var(--gold-2),var(--gold)); padding:4px 11px; border-radius:20px; margin-bottom:14px;}
+  .card h3{font-size:21px; margin:0 0 8px; font-weight:600;}
+  .card p{color:var(--text-lo); font-size:14.5px; line-height:1.6; margin:0 0 18px;}
+  .card-link{font-size:14px; font-weight:600; color:var(--gold-2); display:inline-flex; gap:6px; align-items:center;}
+
+  .icon-badge{width:46px; height:46px; border-radius:13px; display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(135deg, rgba(232,199,122,.22), rgba(139,124,246,.22)); border:1px solid var(--glass-brd); margin-bottom:16px;}
+  .icon-badge svg{width:22px;height:22px; stroke:var(--gold-2);}
+
+  /* ---- calculator form ---- */
+  .calc-wrap{display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center;}
+  @media (max-width:900px){.calc-wrap{grid-template-columns:1fr;}}
+  .form-card{padding:36px;}
+  .field{margin-bottom:18px;}
+  .field label{display:block; font-size:13px; color:var(--text-lo); margin-bottom:7px; font-weight:600;}
+  .field input, .field select{
+    width:100%; padding:13px 15px; border-radius:12px; font-size:14.5px;
+    background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); color:var(--text-hi);
+    outline:none; transition:border-color .2s, box-shadow .2s, background .2s;
+  }
+  .field input::placeholder{color:#6f6890;}
+  .field input:focus, .field select:focus{
+    border-color:var(--gold); background:rgba(255,255,255,0.08);
+    box-shadow:0 0 0 4px rgba(232,199,122,0.15);
+  }
+  .field-row{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+  @media (max-width:520px){.field-row{grid-template-columns:1fr;}}
+  .toast{
+    display:none; margin-top:16px; padding:12px 16px; border-radius:12px; font-size:13.5px;
+    background:rgba(139,124,246,.15); border:1px solid rgba(139,124,246,.4); color:#D8D2FF;
+  }
+
+  /* ---- consultation banner ---- */
+  .cta-banner{padding:56px; display:grid; grid-template-columns:1.1fr .9fr; gap:50px; align-items:center;}
+  @media (max-width:900px){.cta-banner{grid-template-columns:1fr;}}
+  .feature-list{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:26px 0 30px;}
+  @media (max-width:520px){.feature-list{grid-template-columns:1fr;}}
+  .feature-item{display:flex; gap:10px; align-items:flex-start; font-size:14px; color:var(--text-lo);}
+  .feature-item svg{flex-shrink:0; width:18px;height:18px; stroke:var(--gold-2); margin-top:2px;}
+  .cta-visual{height:280px; border-radius:16px; position:relative; overflow:hidden;
+    background:radial-gradient(circle at 60% 30%, rgba(232,199,122,.28), transparent 60%),
+               radial-gradient(circle at 30% 80%, rgba(139,124,246,.3), transparent 60%);
+    border:1px solid var(--glass-brd);}
+
+  /* ---- astrologer cards ---- */
+  .astro-card{padding:24px;}
+  .astro-top{display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;}
+  .status-dot{display:inline-flex; align-items:center; gap:6px; font-size:12px; color:#8CE3B0; font-weight:600;}
+  .status-dot::before{content:''; width:7px;height:7px;border-radius:50%; background:#3FE08A; box-shadow:0 0 8px #3FE08A;}
+  .rating{font-size:12.5px; color:var(--gold-2); font-weight:700;}
+  .avatar{width:56px;height:56px;border-radius:50%; margin-bottom:14px;
+    background:linear-gradient(135deg,var(--violet),var(--indigo)); display:flex; align-items:center; justify-content:center;
+    font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:700; color:#fff;}
+  .astro-meta{font-size:13px; color:var(--text-lo); line-height:1.7; margin-bottom:16px;}
+  .price-row{display:flex; gap:10px;}
+  .price-pill{flex:1; text-align:center; padding:9px; border-radius:10px; font-size:12.5px; font-weight:600;
+    background:rgba(255,255,255,.05); border:1px solid var(--glass-brd);}
+
+  footer{padding:60px 0 40px; margin-top:40px;}
+  .footer-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:40px; padding-bottom:40px; border-bottom:1px solid var(--glass-brd);}
+  @media (max-width:800px){.footer-grid{grid-template-columns:1fr 1fr;}}
+  .footer-grid h4{font-size:14px; margin:0 0 16px; color:var(--text-hi);}
+  .footer-grid a{display:block; font-size:14px; color:var(--text-lo); margin-bottom:10px; transition:color .2s;}
+  .footer-grid a:hover{color:var(--gold-2);}
+  .footer-bottom{display:flex; justify-content:space-between; align-items:center; padding-top:24px; font-size:13px; color:var(--text-lo); flex-wrap:wrap; gap:12px;}
+
+  .reveal{opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<div class="bg-fixed"></div>
+<div class="stars"></div>
+<div class="glow a"></div>
+<div class="glow b"></div>
+<div class="glow c"></div>
+<div class="om-mark">ॐ</div>
+
+<nav class="glass">
+  <div class="nav-logo"><span class="dot">🔔</span> Astro Arun Pandit</div>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#calculators">Calculators</a>
+    <a href="#courses">Courses</a>
+    <a href="#astrologers">Astrologers</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="nav-cta">
+    <a href="#" class="btn btn-ghost btn-sm">Login</a>
+    <a href="#contact" class="btn btn-primary btn-sm">Book a Call</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero wrap">
+  <div class="guru-frame"><span class="tilak">ॐ</span></div>
+  <div class="diya-row">
+    <div class="diya"><div class="flame"></div><div class="bowl"></div></div>
+    <div class="diya"><div class="flame"></div><div class="bowl"></div></div>
+    <div class="diya"><div class="flame"></div><div class="bowl"></div></div>
+  </div>
+  <div class="eyebrow">Vedic Astrology &amp; Spiritual Guidance</div>
+  <h1>A Deeper Understanding of<br><em>Your Life</em> Begins Here</h1>
+  <p>Refined Vedic insights designed to guide your decisions — birth charts, matchmaking, remedies and personal consultation, all in one place.</p>
+  <div class="hero-cta">
+    <a href="#contact" class="btn btn-primary">Book a Consultation</a>
+    <a href="#calculators" class="btn btn-ghost">Explore Free Calculators</a>
+  </div>
+
+  <div class="orbit-wrap">
+    <div class="orbit-core"></div>
+    <div class="orbit o1"><div class="p"></div></div>
+    <div class="orbit o2"><div class="p"></div></div>
+    <div class="orbit o3"></div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="glass stat-card"><div class="num">7L+</div><div class="lbl">Reports Delivered</div></div>
+    <div class="glass stat-card"><div class="num">4.8★</div><div class="lbl">1500+ Reviews</div></div>
+    <div class="glass stat-card"><div class="num">15+ yrs</div><div class="lbl">Guiding Experience</div></div>
+  </div>
+</header>
+
+<div class="garland"></div>
+<!-- SERVICES -->
+<section id="services" class="wrap reveal">
+  <div class="section-head">
+    <div>
+      <div class="eyebrow">Our Services</div>
+      <h2 class="section-title">Choose what fits your journey</h2>
+      <div class="petal-row">🌹 🪔 🌸</div>
+      <p class="section-sub">From personal consultations to sacred pooja — start wherever you are.</p>
+    </div>
+  </div>
+  <div class="grid grid-3">
+    <div class="card glass card-pooja">
+      <span class="tag tag-rose">1-on-1</span>
+      <h3>Astro Arun Pandit Ji Consultation</h3>
+      <p>Personal guidance for clear life decisions, in Hindi or English.</p>
+      <a class="card-link">Book Now →</a>
+    </div>
+    <div class="card glass card-pooja">
+      <span class="tag">Free</span>
+      <h3>Free Kundli Calculator</h3>
+      <p>Your accurate birth chart, generated instantly.</p>
+      <a class="card-link">Check Now →</a>
+    </div>
+    <div class="card glass card-pooja">
+      <span class="tag tag-rose">Most Trusted</span>
+      <h3>Shiv Pujan &amp; Rudraabhishek</h3>
+      <p>Blessings for peace, protection and inner balance.</p>
+      <a class="card-link">Book Now →</a>
+    </div>
+  </div>
+</section>
+
+<!-- KUNDLI CALCULATOR -->
+<section id="kundli" class="wrap reveal">
+  <div class="calc-wrap">
+    <div>
+      <div class="diya" style="margin-bottom:10px;"><div class="flame"></div><div class="bowl"></div></div>
+      <div class="eyebrow">Free Kundli</div>
+      <h2 class="section-title">Get your free Kundli in seconds</h2>
+      <p class="section-sub" style="margin-bottom:20px;">Get clear insight into your life, career and relationships with a personalized birth chart — generated instantly from your details.</p>
+      <div class="feature-item" style="margin-bottom:12px;"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Accurate planetary positions</div>
+      <div class="feature-item" style="margin-bottom:12px;"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Instant, downloadable chart</div>
+      <div class="feature-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> 100% private &amp; free</div>
+    </div>
+    <div class="glass form-card">
+      <h3 style="margin-top:0;">Kundli Calculator</h3>
+      <form id="kundliForm">
+        <div class="field"><label>Name</label><input type="text" placeholder="Your full name" required></div>
+        <div class="field-row">
+          <div class="field"><label>Phone</label><input type="tel" placeholder="+91" required></div>
+          <div class="field"><label>Email</label><input type="email" placeholder="you@example.com" required></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label>Date of Birth</label><input type="text" placeholder="dd/mm/yyyy" required></div>
+          <div class="field"><label>Time of Birth</label><input type="time" required></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label>Birth Place</label><input type="text" placeholder="City, Country" required></div>
+          <div class="field"><label>Gender</label>
+            <select required><option value="">Select Gender</option><option>Male</option><option>Female</option><option>Other</option></select>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Get My Kundli</button>
+        <div class="toast" id="kundliToast">✦ Thanks! Your Kundli request has been noted — this is a preview form.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FREE CALCULATORS -->
+<section id="calculators" class="wrap reveal">
+  <div class="eyebrow">Free Calculators</div>
+  <h2 class="section-title">Understand your life better</h2>
+  <p class="section-sub">Free Vedic astrology tools — instant results, zero cost.</p>
+  <div class="grid grid-4" id="calcGrid"></div>
+</section>
+
+<!-- COURSES -->
+<section id="courses" class="wrap reveal">
+  <div class="eyebrow">Learn</div>
+  <h2 class="section-title">Explore Our Courses</h2>
+  <p class="section-sub">Learn powerful ancient sciences through guided courses that blend tradition with modern clarity.</p>
+  <div class="grid grid-3">
+    <div class="card glass">
+      <span class="tag">Limited Offer</span>
+      <h3>Advance Numerology Mentorship</h3>
+      <p>Decode life patterns, personalities and destinies hidden in numbers.</p>
+      <a class="card-link">1,240 Students · See More →</a>
+    </div>
+    <div class="card glass">
+      <span class="tag">Limited Seats</span>
+      <h3>Advance Astrology Mentorship</h3>
+      <p>A comprehensive journey into Vedic astrology — from fundamentals to confident practice.</p>
+      <a class="card-link">1,000 Students · See More →</a>
+    </div>
+    <div class="card glass">
+      <span class="tag">10 Slots Left</span>
+      <h3>Panchang Jyotish</h3>
+      <p>Master Tithi, Nakshatra, Yoga &amp; Karan for precise Muhurat selection.</p>
+      <a class="card-link">900 Students · See More →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONSULTATION CTA -->
+<div class="garland"></div>
+<section class="wrap reveal">
+  <div class="glass cta-banner">
+    <div>
+      <div class="diya-row" style="justify-content:flex-start; margin-bottom:14px;">
+        <div class="diya"><div class="flame"></div><div class="bowl"></div></div>
+        <div class="diya"><div class="flame"></div><div class="bowl"></div></div>
+      </div>
+      <div class="eyebrow">Personal Consultation</div>
+      <h2 class="section-title" style="font-size:36px;">One Call Can Change Everything</h2>
+      <p class="section-sub" style="margin-bottom:0;">Connect directly with Arun Pandit for a personal consultation that clears confusion, reveals the right direction, and helps you move forward with confidence. Available in Hindi and English.</p>
+      <div class="feature-list">
+        <div class="feature-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="9"/></svg> Vedic Birth Chart Analysis</div>
+        <div class="feature-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="9"/></svg> Career &amp; Business Guidance</div>
+        <div class="feature-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="9"/></svg> Relationship &amp; Marriage</div>
+        <div class="feature-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="9"/></svg> Remedies &amp; Solutions</div>
+      </div>
+      <a href="#contact" class="btn btn-primary">Schedule Your Call</a>
+    </div>
+    <div class="cta-visual"></div>
+  </div>
+</section>
+
+<!-- ASTROLOGERS -->
+<section id="astrologers" class="wrap reveal">
+  <div class="eyebrow">Talk To An Expert</div>
+  <h2 class="section-title">Too Many Thoughts, No Clear Answer?</h2>
+  <p class="section-sub">Connect with a certified astrologer for clarity you can actually trust.</p>
+  <div class="grid grid-4" id="astroGrid"></div>
+</section>
+
+<div class="garland"></div>
+<!-- FOOTER -->
+<footer id="contact" class="wrap">
+  <div class="glass" style="padding:44px;">
+    <div class="footer-grid" style="border-bottom:none; padding-bottom:0;">
+      <div>
+        <div class="nav-logo" style="margin-bottom:14px;"><span class="dot">🔔</span> Astro Arun Pandit</div>
+        <p style="color:var(--text-lo); font-size:14px; line-height:1.7; max-width:280px;">Vedic astrology &amp; spiritual guidance, made clear and personal — for the decisions that matter.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <a href="#services">Reports</a>
+        <a href="#kundli">Consultation</a>
+        <a href="#calculators">Horoscopes</a>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="#">About Us</a>
+        <a href="#courses">Courses</a>
+        <a href="#">Online Puja</a>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <a href="#contact">Contact Us</a>
+        <a href="#">Login</a>
+        <a href="#">Privacy Policy</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Astro Arun Pandit. All rights reserved.</span>
+    <span>Made with ✦ for seekers of clarity.</span>
+  </div>
+</footer>
+
+<script>
+// Free calculators data
+const calcs = [
+  ["Moon Sign Calculator","Understand your emotional nature and instincts."],
+  ["Numerology Calculator","Discover your core personality and life forces."],
+  ["Kundli Matching","Check marriage compatibility with Guna Milan."],
+  ["Nakshatra Calculator","Know your Mahadasha and its influence on you."],
+  ["Baby Name Calculator","Find an auspicious name aligned to the birth chart."],
+  ["Rahu Ketu Calculator","Reveal karmic patterns at play in your life."]
+];
+document.getElementById('calcGrid').innerHTML = calcs.map(c => `
+  <div class="card glass">
+    <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg></div>
+    <h3>${c[0]}</h3>
+    <p>${c[1]}</p>
+    <a class="card-link">Calculate for Free →</a>
+  </div>`).join('');
+
+// Astrologers data
+const astros = [
+  ["Pandit Ravi Shastri","4.8","1500","Hindi, Sanskrit","28"],
+  ["Guru Prakash Nair","4.9","2100","Malayalam, English","30"],
+  ["Acharya Sandeep Mishra","4.6","980","Hindi, English","18"],
+  ["Pandit Anil Chaturvedi","4.7","1200","Hindi, Sanskrit, English","20"]
+];
+document.getElementById('astroGrid').innerHTML = astros.map(a => `
+  <div class="card glass astro-card">
+    <div class="astro-top"><span class="status-dot">Online</span><span class="rating">★ ${a[1]} (${a[2]}+)</span></div>
+    <div class="avatar">${a[0].split(' ').map(w=>w[0]).slice(0,2).join('')}</div>
+    <h3 style="font-size:18px; margin-bottom:6px;">${a[0]}</h3>
+    <div class="astro-meta">Horoscope analysis<br>${a[3]} · Exp: ${a[4]} yrs</div>
+    <div class="price-row">
+      <div class="price-pill">Call ₹50/min</div>
+      <div class="price-pill">Chat ₹50/min</div>
+    </div>
+  </div>`).join('');
+
+// form preview toast
+document.getElementById('kundliForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  document.getElementById('kundliToast').style.display = 'block';
+});
+
+// scroll reveal
+const obs = new IntersectionObserver((entries)=>{
+  entries.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('in'); obs.unobserve(en.target); } });
+},{threshold:0.12});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
